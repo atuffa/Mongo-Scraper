@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta data's -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Links -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:700" rel="stylesheet">
+
+    <!--title-->
+    <title>Mongo Scraper</title>
+    <style>
+
+    /* nav */
+
+        .navbar-custom{
+            background-color: #428bca;
+            padding: 0px 0px 0px 0px;
+            margin: 0px;
+            
+        }
+            /* nav logo */
+        .navbar-header> .navbar-brand {
+            color:white;
+            font-size:2em;
+            font-family: "Times New Roman", Times, serif;
+            padding: 15px ;
+            margin: 7px 0px 0px 15px;
+            margin-left: 15px!important;
+        }
+        
+            /* nav tabs */
+        .navbar-nav>li>a{
+            color:white;
+            padding: 25px 15px;
+        }
+        .navbar-nav>li>a:hover{
+            color:rgb(53, 147, 235)
+        }
+
+            /* nav buttons */
+        .container-fluid>button {
+           padding:10px 20px 10px 15px;
+           margin: 13px 0px 6px 10px;
+        }
+
+    /* main */
+
+        /* background image */
+        .container-fluid{
+            padding: 0px;
+            margin:0 0 20 0;
+        }
+
+        /* image text */
+        .centered h1{
+            /* background: none repeat scroll 0 0 #FFFFFF; */
+            color:white;
+            opacity: 1;
+            top:60%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-family: "Times New Roman", Times, serif;
+            font-size:5em;
+            font-weight: bold;
+        }
+        .centered h3{
+            /* background: none repeat scroll 0 0 #FFFFFF; */
+            color:white;
+            opacity: 1;
+            top:70%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: italic;
+        }
+       
+
+        thumbnail
+        .thumbnail{
+            position:relative;
+        }
+
+
+
+        
+
+        /* article panels */
+        
+        /* panel */
+        .article{
+            margin:20px 20px;
+        }
+
+            /* heading */
+        .articles>.panel-heading{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3em;  
+        }
+        
+            /* body */
+        .articles>.panel-body{
+            font-size: 1.5em;
+        }
+
+            /* button */
+        .article>.articles>.panel-heading>button{
+            padding: 6px 15px;
+            margin-top:10px;
+            border: radius 1;
+            margin-right: 5px;
+            float: right;
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+<!-- nav bar -->
+
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Mongo Scraper</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Saved Article</a></li>
+            </ul>
+            <button id="btn" class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#myModal">
+                SCRAPE NEW ARTICLE!
+            </button>
+        </div>
+    </nav>
+
+<!-- main content -->
+
+    <!-- image -->
+    <div class="container-fluid thumbnail">
+        <img src="NYT picture.jpg" alt="Lights" class="img-background"width="100%">
+        <div class="centered">
+            <h1>MONGO SCRAPER</h1>
+            <h3>NEW YORK TIMES EDITION</h3>
+        </div>
+    </div>
+
+    <!-- Article panel -->
+    <div class="article">
+        <div class="panel panel-primary articles">
+            <div class="panel-heading">Panel with panel-primary class<button type="button" class="btn btn-success">SAVE ARTICLE</button></div>
+            <div class="panel-body">Panel Content</div>
+        </div>
+        <div class="panel panel-primary articles">
+            <div class="panel-heading">Panel with panel-primary class<button type="button" class="btn btn-success">SAVE ARTICLE</button></div>
+            <div class="panel-body">Panel Content</div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You have added 20 Articles</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

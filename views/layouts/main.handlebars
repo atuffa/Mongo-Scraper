@@ -18,11 +18,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:700" rel="stylesheet">
+
     <!--title-->
     <title>Mongo Scraper</title>
     <style>
 
-        /* nav */
+    /* nav */
 
         .navbar-custom{
             background-color: #428bca;
@@ -55,12 +58,48 @@
            margin: 13px 0px 6px 10px;
         }
 
-            /* background image */
+    /* main */
+
+        /* background image */
         .container-fluid{
             padding: 0px;
             margin:0 0 20 0;
         }
 
+        /* image text */
+        .centered h1{
+            /* background: none repeat scroll 0 0 #FFFFFF; */
+            color:white;
+            opacity: 1;
+            top:60%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-family: "Times New Roman", Times, serif;
+            font-size:5em;
+            font-weight: bold;
+        }
+        .centered h3{
+            /* background: none repeat scroll 0 0 #FFFFFF; */
+            color:white;
+            opacity: 1;
+            top:70%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: italic;
+        }
+       
+
+        thumbnail
+        .thumbnail{
+            position:relative;
+        }
+
+
+
+        
 
         /* article panels */
         
@@ -86,45 +125,13 @@
             margin-top:10px;
             border: radius 1;
             margin-right: 5px;
+            float: right;
         }
 
         
     </style>
 </head>
 <body>
-    
-    <!-- nav bar -->
-    <nav class="navbar navbar-custom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Mongo Scraper</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Saved Article</a></li>
-            </ul>
-            <button id="btn" class="btn btn-danger navbar-btn">SCRAPE NEW ARTICLE!</button>
-        </div>
-    </nav>
-
-    <!-- main content -->
-
-    <!-- image -->
-    <div class="container-fluid">
-        <img src="NYT picture.jpg" alt="Lights" class="img-background"width="100%">
-    </div>
-
-    <!-- Article panel -->
-    <div class="article">
-        <div class="panel panel-primary articles">
-            <div class="panel-heading">Panel with panel-primary class<button type="button" class="btn btn-success" style="float: right">SAVE ARTICLE</button></div>
-            <div class="panel-body">Panel Content</div>
-        </div>
-    </div>
-
-
-
+    {{{body}}}
 </body>
 </html>
-
-
