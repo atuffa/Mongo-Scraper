@@ -26,15 +26,15 @@
     <!-- Article panel -->
     <div class="article">
         {{#each result}}
-            <div class="panel panel-primary articles" id="{{id}}">
-                <div class="panel-heading">{{title}}<button type="button" class="btn btn-success" data-id ="{{id}}">SAVE ARTICLE</button></div>
-                <div class="panel-body">{{body}}</div>
+            <div class="panel panel-primary articles" id="{{_id}}">
+                <div class="panel-heading">{{title}}<button type="button" class="btn btn-success" data-id ="{{_id}}">SAVE ARTICLE</button></div>
+                {{!-- <div class="panel-body">{{body}}</div> --}}
             </div>
-        {{/each}}
-        {{!-- <div class="panel panel-primary articles">
+        {{/each}} 
+        <div class="panel panel-primary articles">
             <div class="panel-heading">Panel with panel-primary class<button type="button" class="btn btn-success">SAVE ARTICLE</button></div>
             <div class="panel-body">Panel Content</div>
-        </div> --}}
+        </div>
     </div>
 
     <!-- Modal -->

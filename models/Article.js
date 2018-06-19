@@ -8,21 +8,23 @@ let Schema = mongoose.Schema;
 let ArticleSchema = new Schema({
 
     // title is required and its a string type
-    title:{
+    title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     // title is required and its a string type
-    link:{
+    link: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     // note is an object that stores a Note id
     // the ref property links the Object.Id with to the Note model
     // this allows to populate the Article with the associated note
-    note:{
+    note: {
         type: Schema.Types.ObjectId,
         ref: "Note"
     }

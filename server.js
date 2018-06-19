@@ -1,132 +1,99 @@
 // Dependencies
 var express = require("express");
-var mongojs = require("mongojs");
 var bodyParser = require("body-parser");
+var logger = require("morgan");
 var exphbs = require("express-handlebars");
+var mongoose = require("mongoose");
+
 
 // Require request and cheerio. This makes the scraping possible
-var request = require("request");
+var axios = require("axios");
 var cheerio = require("cheerio");
 
+// Require all our models
+var db = require("./models");
+
+var PORT = 3000;
 
 // Initialize Express
 var app = express();
 
-// Database configuration
-// var databaseUrl = "scraper";
-// var collections = ["scrapedData"];
+
+// Configure middlewares
 
 // Use morgan logger for logging requests
-// app.use(logger("dev"));
+app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 app.use(express.static('views/images'));
-
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 
-// Hook mongojs configuration to the db variable
-// var db = mongojs(databaseUrl, collections);
-// db.on("error", function(error) {
-//   console.log("Database Error:", error);
-// });
+// connect to MongoDB
+mongoose.connect("mongodb://localhost/MongoScraper");
+// mongoose.connect("mongodb://localhost/week18Populater");
 
-// Main route (simple Hello World Message)
-app.get("/", function(req, res) {
-  res.send("Hello world");
+
+
+// Routes
+
+// A route to scrape the NYTimes
+app.get("/scrape", function(req, res) {
+
+    axios.get("https://www.nytimes.com/").then(function(response){
+
+        // we load it cherio and save in $ for shorthand selector
+        let $ = cheerio.load(response.data);
+
+        // now we grab all the h2 element with the storyheading class
+        $("h2.story-heading").each(function(i, element){
+
+            // create an empty object to store the scrapped data's
+            let result = {}
+           
+
+            // store the title and link as a properties in result 
+            result.title = $(this).children("a").text()
+            result.link = $(this).children("a").attr("href");
+
+            // console.log(result)
+            
+            // Create a new article using the result object
+            db.Article.create(result)
+            .then(function(dbArticle) {
+                // View the added result in the console
+                console.log(dbArticle);
+                
+            })
+            .catch(function(err) {
+                // If an error occurred, send it to the client
+                return res.json(err);
+            });
+        });  
+    });
+    res.send("Scraping Completed");
 });
 
-// Retrieve home page from the db
+// A Route to get all articles
 app.get("/home", function(req, res) {
 
-
-    let result = [
-        {
-            id:1,
-            title:"Trump and Kim jung un meet in singapor",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:false
-        },
-        {
-            id:2,
-            title:"Dr. Abiy is on Fire",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:false
-        },
-        {
-            id:3,
-            title:"ANC choose new chair person",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:true
-        }
-    ];
-
-    let data = {
-        result
-    }
-    res.render("home", data);
-    
-
-  // Find all results from the scrapedData collection in the db
-//   db.scrapedData.find({}, function(error, found) {
-//     // Throw any errors to the console
-//     if (error) {
-//       console.log(error);
-//     }
-//     // If there are no errors, send the data to the browser as json
-//     else {
-//       res.json(found);
-//     }
-//   });
+    // Grab all the articles from the data base
+    db.Article.find({})
+    .then(function(dbArticle){
+        console.log(dbArticle)
+        // If Succesfull render it on on the home page
+        res.render("home", {result: dbArticle});
+    })
+    .catch(function(err){
+        // If an error occured, send it to the client
+    })
 });
 
-// Retrieve saved articles from the db
-app.get("/saved", function(req, res) {
 
-
-    let result = [
-        {
-            id:1,
-            title:"Trump and Kim jung un meet in singapor",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:false
-        },
-        {
-            id:2,
-            title:"Dr. Abiy is on Fire",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:false
-        },
-        {
-            id:3,
-            title:"ANC choose new chair person",
-            body:"Pariatur tempor adipisicing sit qui esse labore.Adipisicing ad anim excepteur ad ipsum ipsum fugiat.",
-            saved:true
-        }
-    ];
-
-    let data = {
-        result
-    }
-    res.render("saved", data);
-    
-
-  // Find all results from the scrapedData collection in the db
-//   db.scrapedData.find({}, function(error, found) {
-//     // Throw any errors to the console
-//     if (error) {
-//       console.log(error);
-//     }
-//     // If there are no errors, send the data to the browser as json
-//     else {
-//       res.json(found);
-//     }
-//   });
-});
 
 // Listen on port 3000
 app.listen(3000, function() {
