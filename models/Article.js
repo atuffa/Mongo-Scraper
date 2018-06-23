@@ -21,6 +21,18 @@ let ArticleSchema = new Schema({
         unique: true
     },
 
+    // body is required and its a string 
+    content:{
+        type: String,
+       
+    },
+
+    // saved is a boolean and by default false
+    saved:{
+        type: Boolean,
+        default: false
+    },
+
     // note is an object that stores a Note id
     // the ref property links the Object.Id with to the Note model
     // this allows to populate the Article with the associated note

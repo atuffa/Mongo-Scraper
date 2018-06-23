@@ -1,23 +1,22 @@
-// incorporating the required dependecies
-let mongoose = require("mongoose");
+// incorporate required dependecies
+var mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-let Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-// Using the schema constructor create a new UserSchema
-let NoteSchema = new Schema({
+// Using the Schema constructor, create a new UserSchema object
+var NoteSchema = new Schema({
 
-    // title is a string type property
-    title: String,
+  // `body` is of type String
+  body:{
+    type: String,
+    unique: true
+  } 
 
-    // body is a string type property
-    body: String
 });
 
-// this allows the us to create a model
-// from the note Schema, using the mongoose model method
+// This creates our model from the above schema, using mongoose's model method
+var Note = mongoose.model("Note", NoteSchema);
 
-let Note = mongoose.model("Note", NoteSchema);
-
-// Export the note model
+// Export the Note model
 module.exports = Note;
