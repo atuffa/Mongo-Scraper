@@ -70,7 +70,7 @@ $(document).on("click", "#addNote", function(){
     $("#inputBody").val("")
 
      // relaod the page
-    //  location.reload()
+     location.reload()
 
 });
 
@@ -91,10 +91,10 @@ $(document).on("click", "#deleteFromNote", function(){
         console.log(data)
     });
 
-    // show the modal
-    $(".note").hide()
+    // // show the modal
+    // $("#note").hide()
 
-    // // hide no article
+    // // // hide no article
     // $("#noArticle").hide()
 
     // relaod the page
