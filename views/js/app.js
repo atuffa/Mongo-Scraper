@@ -1,7 +1,7 @@
 // for scraping NYTimes
 $(document).on("click", "#scrape", function(){
 
-    // alert("hey")
+    
     // Now the ajax call for the article to scrape 
     $.ajax({
         method: "GET",
@@ -9,9 +9,6 @@ $(document).on("click", "#scrape", function(){
     }).then(function(data) {
           console.log(data)
     });
-
-    // // relaod the page
-    // location.reload()
 
 })
 
@@ -46,9 +43,7 @@ $(document).on("click", "#addNote", function(){
     let inputBody = $("#inputBody").val()
     console.log(thisId);
 
-    let renderedNote = $("#renderedNote").text
-    console.log(renderedNote)
-// if ()
+    
     // Run the POST to change/add a note 
     $.ajax({
         method: "POST",
@@ -62,31 +57,21 @@ $(document).on("click", "#addNote", function(){
     .then(function(data){
         console.log(data);
 
-        // hide the note area
-        $("#noArticle").hide()
+        
         
     })
 
+    // hide the note area
+    $("li#noArticle").addClass("hide")
 
+    // show note
+    $("li#note").removeClass("hide")
     // empty the input field
     $("#inputBody").val("")
 
      // relaod the page
-     location.reload()
+    //  location.reload()
 
-});
-
-// Add note for saved article
-$(document).on("click", "#addedNote", function(){
-    
-    // get the data-attr of the clicked articles button
-    let thisId = $(this).attr("data-id");
-    // console.log(thisId)
-    
-    $("#noArticle").hide()
-
-    // // relaod the page
-    location.reload()
 });
 
 
@@ -105,6 +90,12 @@ $(document).on("click", "#deleteFromNote", function(){
     }).then(function(data) {
         console.log(data)
     });
+
+    // show the modal
+    $(".note").hide()
+
+    // // hide no article
+    // $("#noArticle").hide()
 
     // relaod the page
     location.reload()
