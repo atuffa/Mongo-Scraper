@@ -78,18 +78,18 @@ app.get("/scrape", function(req, res) {
 
             console.log(result)
             
-            // // Create a new article using the result object
-            // db.Article.create(result)
-            // .then(function(dbArticle) {
+            // Create a new article using the result object
+            db.Article.create(result)
+            .then(function(dbArticle) {
 
-            //     // View the added result in the console
-            //     console.log(dbArticle);
-            // })
-            // .catch(function(err) {
+                // View the added result in the console
+                console.log(dbArticle);
+            })
+            .catch(function(err) {
 
-            //     // If an error occurred, send it to the client
-            //     return res.json(err);
-            // });
+                // If an error occurred, send it to the client
+                return res.json(err);
+            });
         });  
     });
     // res.send("Scraping Completed");
