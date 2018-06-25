@@ -27,26 +27,26 @@
     <!-- Article panel -->
     <div class="article">
         <div>{{result}}</div>
-                <div class="panel panel-primary articles" id = "{{id}}">
+                <div class="panel panel-primary articles" >
                     <div class="panel-heading">
                         <div class="row">
                             <p class="col-md-8">{{title}}</p>
-                            <button type="button" class="btn btn-default col-md-1" data-id = "{{id}}" data-toggle="modal" data-target="#myModal">ARTICLE NOTE</button>
+                            <button type="button" class="btn btn-default col-md-1" data-id = "{{id}}" data-toggle="modal" data-target="#{{id}}">ARTICLE NOTE</button>
                             <button id="deleteFromNote" type="button" class="btn btn-danger col-md-2" style="margin-right: 10px" data-id = "{{id}}">DELETE FROM Saved</button>
-                            
                         </div>
                     </div>
                     
                     <div class="panel-body">{{content}}</div>
                 </div>
     </div>
-    
+   
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="{{id}}" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
+                
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Note for Article: {{id}}</h4>
@@ -54,9 +54,8 @@
    
                 <div class="modal-body">
                     <div class="input-group">
-                      {{!-- {{#each result.note}} --}}
+
                         <li class="form-control" style=" width: 556px">
-                            
                             <div class="row">
                                 <p id="renderedNote"class="col-md-9">{{note.body}}</p>
                                
@@ -66,12 +65,11 @@
                                     </button>
                                 </span>
                             </div>
-                            
                         </li>
-                     {{!-- {{/each}} --}}
-                        {{!-- <li id="noArticle" class="form-control">
+                     
+                        <li id="noArticle" class="form-control">
                             No note for this article yet
-                        </li> --}}
+                        </li>
                         <form>
                             <div class="form-group" >
                                 <input class="form-control" rows="5" id="inputBody" placeholder="New Note" style="margin-top:20px">
@@ -80,7 +78,9 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
+
                 <div class="modal-footer">
                     <button id="addNote" type="button" class="btn btn-primary" data-dismiss="modal"  data-id = "{{id}}">Save Note</button>
                 </div>

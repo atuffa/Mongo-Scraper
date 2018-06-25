@@ -64,6 +64,7 @@ $(document).on("click", "#addNote", function(){
 
         // hide the note area
         $("#noArticle").hide()
+        
     })
 
 
@@ -121,7 +122,9 @@ $(document).on("click", "#deleteNote", function (){
     }).then(function(data) {
         console.log(data)
     });
-
+    console.log("iam her")
+    $("#noArticle").hide()
+    console.log("iamdone")
 })
 
 // scrape modal buttons
@@ -129,6 +132,10 @@ $("#scrapeModal").on("click", function(){
 
     // relaod the page
     location.reload()
+});
+
+$('body').on('hidden.bs.modal', '.modal', function () {
+    $(this).removeData('bs.modal');
 });
 
 

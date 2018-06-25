@@ -56,31 +56,40 @@ app.get("/scrape", function(req, res) {
         let $ = cheerio.load(response.data);
 
         // now we grab all the h2 element with the storyheading class
-        $("h2.story-heading, p.summary").each(function(i, element){
+        $("article.story").each(function(i, article){
 
             // create an empty object to store the scrapped data's
             let result = {}
            
-
+           // 
+            const news = $(article).children('.story-heading')
+           
             // store the title and link as a properties in result 
-            result.title = $(this).children("a").text()
-            result.link = $(this).children("a").attr("href");
-            result.content = "I cannot figure out the traversing method"
-
-            console.log(i)
+            result.title = news.text().trim()
+            result.link = news.children('a').attr('href');
             
-            // Create a new article using the result object
-            db.Article.create(result)
-            .then(function(dbArticle) {
+            // store summary and filter
+            const content = $(article).children('.summary').text().trim()
+            if (content === "") {
+                return 
+            }else{
+                result.content = content
+            }
 
-                // View the added result in the console
-                console.log(dbArticle);
-            })
-            .catch(function(err) {
+            console.log(result)
+            
+            // // Create a new article using the result object
+            // db.Article.create(result)
+            // .then(function(dbArticle) {
 
-                // If an error occurred, send it to the client
-                return res.json(err);
-            });
+            //     // View the added result in the console
+            //     console.log(dbArticle);
+            // })
+            // .catch(function(err) {
+
+            //     // If an error occurred, send it to the client
+            //     return res.json(err);
+            // });
         });  
     });
     // res.send("Scraping Completed");
