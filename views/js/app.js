@@ -62,10 +62,10 @@ $(document).on("click", "#addNote", function(){
     })
 
     // hide the note area
-    $("li#noArticle").addClass("hide")
+    // $("li#noArticle").addClass("hide")
 
-    // show note
-    $("li#note").removeClass("hide")
+    // // show note
+    // $("li#note").removeClass("hide")
     // empty the input field
     $("#inputBody").val("")
 
