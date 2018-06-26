@@ -34,7 +34,7 @@ $(document).on("click", "#saveArticle", function(){
 });
 
 // To add note on the saved article
-$(document).on("click", "#addNote", function(){
+$(".save-button").on("click",  function(){
 
     // get the data-attr of the clicked articles button
     let thisId = $(this).attr("data-id");
@@ -42,7 +42,8 @@ $(document).on("click", "#addNote", function(){
     // get the text for the note title
     let inputBody = $("#inputBody").val()
     console.log(thisId);
-
+    console.log(inputBody)
+   
     
     // Run the POST to change/add a note 
     $.ajax({
@@ -56,9 +57,7 @@ $(document).on("click", "#addNote", function(){
     })
     .then(function(data){
         console.log(data);
-
-        
-        
+        // $("#inputBody").val("")
     })
 
     // hide the note area
@@ -67,14 +66,26 @@ $(document).on("click", "#addNote", function(){
     // // show note
     // $("li#note").removeClass("hide")
     // empty the input field
-    $("#inputBody").val("")
+   
 
      // relaod the page
      location.reload()
 
 });
 
+$(document).on("click", ".opennotemodal", function(){
+ 
+// add id to the modal
+ $(".modal-id").html($(this).data("id"))
+console.log($(this).data("note") === "")
 
+   // add note to the modal
+ $(".modal-note").html($(this).data("note"))
+
+ $(".save-button").attr("data-id", $(this).data("id"))
+ $(".modal-delete").attr("data-id", $(this).data("id"))
+ 
+}); 
 // delete from saved article
 $(document).on("click", "#deleteFromNote", function(){
     
@@ -92,10 +103,10 @@ $(document).on("click", "#deleteFromNote", function(){
     });
 
     // // show the modal
-    // $("#note").hide()
+    $("#note").hide()
 
     // // // hide no article
-    // $("#noArticle").hide()
+    $("#noArticle").show()
 
     // relaod the page
     location.reload()
@@ -125,9 +136,9 @@ $("#scrapeModal").on("click", function(){
     location.reload()
 });
 
-$('body').on('hidden.bs.modal', '.modal', function () {
-    $(this).removeData('bs.modal');
-});
+// $('body').on('hidden.bs.modal', '.modal', function () {
+//     $(this).removeData('bs.modal');
+// });
 
 
 
